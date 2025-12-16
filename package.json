@@ -7,6 +7,7 @@
     "test:e2e": "playwright test",
     "dev": "NODE_ENV=development nodemon index.ts",
     "build": "NODE_ENV=production npm i && tsc",
+    "start": "npm i && node ./dist/index.js",
     "lint": "npx eslint .",
     "start:test": "NODE_ENV=test nodemon index.ts",
     "migration:down": "tsx utils/migration_rollback.ts",
