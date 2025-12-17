@@ -8,10 +8,15 @@ const connectionString =
     : (process.env.TEST_POSTGRES_URL as string)
 
 const dialectOptions: any = {}
-
-dialectOptions.ssl = {
-  require: true,
-  rejectUnauthorized: false,
+// Only enable SSL in production; local and test environments use unencrypted connections
+if (process.env.NODE_ENV != 'test' && process.env.NODE_ENV != 'development') {
+  dialectOptions.ssl = {
+    require: true,
+    rejectUnauthorized: false,
+  }
+} else {
+  // Explicitly disable SSL for development and test
+  dialectOptions.ssl = false
 }
 
 export const sequelize = new Sequelize(connectionString, {

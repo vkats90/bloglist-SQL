@@ -45,5 +45,6 @@
     "./**/*.ts", // include all TS files in root and subfolders
     "./types.d.ts" // explicitly include your custom types
   ],
+  "exclude": ["./tests"],
   "files": ["./types.d.ts"] // 👈 force load this file
 }
