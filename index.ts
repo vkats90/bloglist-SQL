@@ -3,7 +3,7 @@ import logger from './utils/logger'
 import { dbConnect } from './dbConnection'
 import { initDB } from './initDB'
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3001
 
 ;(async () => {
   await dbConnect()
