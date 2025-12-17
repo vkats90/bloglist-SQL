@@ -5,6 +5,7 @@ export class User extends Model {
   passwordHash: any
   name: any
   id: any
+  username: any
 }
 
 User.init(

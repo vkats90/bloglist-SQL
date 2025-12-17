@@ -25,7 +25,7 @@ const userExtractor = async (req: Request, res: Response, next: NextFunction) =>
   let disabled = await models.User.findByPk(user.id)
   if (!disabled || disabled.toJSON().disabled) throw { status: 401, error: 'Unauthorized' }
 
-  req.user = { username: user.username, id: user.id }
+  req.user = { username: user.username, id: user.id } as any
 
   next()
 }

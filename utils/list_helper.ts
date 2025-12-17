@@ -1,4 +1,4 @@
-import { Blog } from '../types'
+import type { Blog } from '../models/blogs'
 
 const dummy = (_blogs: Blog[]) => {
   return 1
@@ -18,8 +18,7 @@ const mostProlificWriter = (blogs: Blog[]) => {
   let writers: Writers = {}
 
   blogs.map((b) => {
-    if (writers[b.author]) writers[b.author]++
-    else writers[b.author] = 1
+    writers[b.author] = (writers[b.author] ?? 0) + 1
   })
 
   const books = Math.max(...Object.values(writers))

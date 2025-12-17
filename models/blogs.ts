@@ -5,6 +5,8 @@ import { User } from './users'
 export class Blog extends Model {
   id: any
   title: any
+  likes: any
+  author: any
 }
 
 Blog.init(
