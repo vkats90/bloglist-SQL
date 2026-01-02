@@ -68,9 +68,9 @@ jobs:
           TEST_POSTGRES_URL: postgres://root:example@localhost:5432/bloglist_db
         run: npm run test
 
-    #  - name: 'Trigger Deployment'
-    #   if: ${{ github.event_name == 'push' && env.CONDITION == 'false' }}
-    #  run: curl https://api.render.com/deploy/srv-${{secrets.RENDER_SERVICE_ID}}?key=${{secrets.RENDER_API_KEY}}
+      - name: 'Trigger Deployment'
+        if: ${{ github.event_name == 'push' && env.CONDITION == 'false' }}
+        run: curl https://api.render.com/deploy/srv-${{secrets.RENDER_SERVICE_ID}}?key=${{secrets.RENDER_API_KEY}}
 
   tag_release:
     needs: [checkout-and-test]
