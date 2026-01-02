@@ -56,9 +56,16 @@ jobs:
       # run: docker compose up
 
       - name: Run migrations
+        env:
+          NODE_ENV: test
+          POSTGRES_URL: postgres://root:example@localhost:5432/bloglist_db
+          TEST_POSTGRES_URL: postgres://root:example@localhost:5432/bloglist_db
         run: npm run migration:up
 
       - name: Run local tests
+        env:
+          NODE_ENV: test
+          TEST_POSTGRES_URL: postgres://root:example@localhost:5432/bloglist_db
         run: npm run test
 
     #  - name: 'Trigger Deployment'
