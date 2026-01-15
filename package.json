@@ -6,7 +6,7 @@
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "dev": "NODE_ENV=development nodemon index.ts",
     "build": "npm install && tsc",
-    "start": "npm i && node ./dist/index.js",
+    "start": "NODE_ENV=production node ./dist/index.js",
     "lint": "npx eslint .",
     "start:test": "NODE_ENV=test nodemon index.ts",
     "migration:down": "tsx utils/migration_rollback.ts",
