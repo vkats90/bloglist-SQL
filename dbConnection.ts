@@ -3,7 +3,7 @@ import logger from './utils/logger'
 import 'dotenv/config'
 
 const connectionString =
-  process.env.NODE_ENV != 'test'
+  process.env.NODE_ENV == 'production'
     ? (process.env.POSTGRES_URL as string)
     : (process.env.TEST_POSTGRES_URL as string)
 
