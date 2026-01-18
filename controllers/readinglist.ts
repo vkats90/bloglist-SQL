@@ -5,10 +5,26 @@ import type { ReadingLists } from '../models/readingLists'
 
 export const readingsRouter = Router()
 
+readingsRouter.get('/', async (req: Request, res: Response) => {
+  let { userId, blogId } = req.query
+
+  console.log(req.query)
+
+  //if (!req.user) throw { status: 401, error: 'Unauthorized' }
+  if (!userId || !blogId) throw { status: 400, error: 'Missing User Id or Blog Id' }
+  let reading = await models.ReadingLists.findOne({
+    where: { userId: Number(userId), blogId: Number(blogId) },
+  })
+
+  if (!reading) throw { status: 400, error: 'Reading doesnt exist' }
+
+  res.status(200).send(reading?.toJSON().read)
+})
+
 readingsRouter.post('/', middleware.userExtractor, async (req: Request, res: Response) => {
   const reading = req.body
   if (!req.user || req.user.id != reading.userId) throw { status: 401, error: 'Unauthorized' }
-  await models.ReadingLists.findOne({
+  await models.ReadingLists.destroy({
     where: { userId: reading.userId, blogId: reading.blogId },
   })
   const newReading = models.ReadingLists.build({
